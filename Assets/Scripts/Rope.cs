@@ -47,14 +47,14 @@ public class Rope : MonoBehaviour
             for (int i = 0; i < mouseDistance / deltaPath; i++)
             {
                 Vector2 intermPos = (Vector2)transform.position + mouseDirecrion * i * deltaPath;
-
+                
                 RaycastHit2D hitInside = Physics2D.Raycast(
                     intermPos,
                     Vector2.zero,
                     0,
                     collMask
                 );
-
+                
                 if (hitInside)
                 {
                     proccessHit(hitInside);
@@ -68,8 +68,7 @@ public class Rope : MonoBehaviour
                     Vector2.Distance(last2, intermPos) - hitVectorCut,
                     collMask
                 );
-                if (hitWith && !proccessHit(hitWith) && System.Math.Abs(Vector2.Distance(last2, hitWith.point)) > minDistBetwPoints)
-                {
+                if (hitWith && !proccessHit(hitWith) && System.Math.Abs(Vector2.Distance(last2, hitWith.point)) > minDistBetwPoints){
                     mousePos = intermPos;
                     ropePositions.RemoveAt(ropePositions.Count - 1);
                     ropePositions.Add(hitWith.point);
@@ -82,7 +81,7 @@ public class Rope : MonoBehaviour
                     last2 = ropePositions[ropePositions.Count - 2];
                     Vector2 last3 = ropePositions[ropePositions.Count - 3];
                     float angle = Vector3.Angle(last2 - last3, last - last3);
-                    if (angle >= 90)
+                    if(angle >= 90)
                     {
                         ropePositions.RemoveAt(ropePositions.Count - 2);
                     }
